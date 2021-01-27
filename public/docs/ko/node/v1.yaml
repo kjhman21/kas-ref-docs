@@ -1,0 +1,724 @@
+"openapi": "3.0.0"
+"info":
+  "title": "Klaytn Node API"
+  "description": "# Introduction
+
+
+    KAS Klaytn Node API(이하 Node API)는 Ground X의 블록체인 플랫폼인 Klaytn을 활용할 수 있게
+    해주는 API입니다. 원래, Klaytn을 사용하려면 고성능 하드웨어 스펙을 갖춘 Klaytn Endpoint Node(KEN)를 직접
+    운영하셔야 합니다. \ 
+
+    \   \ 
+
+    하지만, KAS를 사용하면 여러분은 KEN을 운영할 필요 없이 Node API로 Klaytn에 접속해 블록체인 플랫폼을 바로
+    활용할 수 있습니다.
+
+
+    Node API 사용에 관한 자세한 내용은 [튜토리얼](https://klaytn.com)을 확인하십시오.
+
+
+    이 문서 혹은 KAS에 관한 문의는 [개발자 포럼](https://forum.klaytn.com/)을 방문해 도움을 받으십시오
+
+    \n"
+"paths":
+  "/v1/klaytn":
+    "post":
+      "description": "Klaytn JSON RPC를 실행합니다. 사용할 수 있는 RPC 메소드는 [KAS Console >
+        Services > Node API](https://console.klaytnapi.com/service/node)에서 확인하실
+        수 있습니다.<p></p>
+
+
+        > Node API는 매번 다른 엔드포인트 노드를 호출하며 블록 번호에 `pending`을 입력할 경우 기대한 것과
+        다른 결과가 나올 수 있습니다."
+      "parameters":
+        - "description": " Chain ID (one of 8217 or 1001)"
+          "in": "header"
+          "name": "x-chain-id"
+          "required": true
+          "schema":
+            "type": "string"
+      "responses":
+        "200":
+          "description": "Success"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/JsonRpcResponse"
+              "examples":
+                "klay_getBlockReceipts":
+                  "summary": "klay_getBlockReceipts"
+                  "description": ""
+                  "value":
+                    "jsonrpc": "2.0"
+                    "id": 73
+                    "result":
+                      - "blockHash": "0x58d6a86156082b3abc7c9a416684c855f5760c15088d242d665b8f0686cb132\
+                          9"
+                        "blockNumber": "0x20f3106"
+                        "contractAddress": null
+                        "feePayer": "0x7be759b78f34389fa15f85f4144d8cd732c4c60d"
+                        "feePayerSignatures":
+                          - "V": "0x4056"
+                            "R": "0x2db688af311077b6fdfe58e8bfb5e37395ab455aa4effe4a4e58947c15c250c5"
+                            "S": "0x33c5f09d96fdcf0c81533a970f8b89e01ccc6e76ceb489512767b305ed98a2d8"
+                        "from": "0x5531a4d2b4237e87148630c3cb0051999bb205a9"
+                        "gas": "0x419ce0"
+                        "gasPrice": "0x5d21dba00"
+                        "gasUsed": "0xfa9a"
+                        "input": "0x0f73bcc200000000000000000000000000000000000000000000000000000000000\
+                          00060000000000000000000000000000000000000000000000000\
+                          00000000000094800000000000000000000000000000000000000\
+                          0000000000000000000000000a000000000000000000000000000\
+                          00000000000000000000000000000000000002544a00000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          0000011ec88a8ec868ceba6ac2842726561746829000000000000\
+                          000000000000000000"
+                        "logs":
+                          - "address": "0xf93b0d3e03422416b787e850c51f7be47ab481e5"
+                            "topics":
+                              - "0x23b798d2d48eb64eaa15f6b93414c84032fada9b76ad\
+                                e5854af0acadd57d7065"
+                              - "0xbcff12704be84695bcae04bed99f28737805bc5e5507\
+                                d16a4d005393724d1a65"
+                              - "0x00000000000000000000000000000000000000000000\
+                                00000000000000009480"
+                            "data": "0x00000000000000000000000000000000000000000000000000000000000000200000\
+                              0000000000000000000000000000000000000000000000000\
+                              00000000011ec88a8ec868ceba6ac28427265617468290000\
+                              00000000000000000000000000"
+                            "blockNumber": "0x20f3106"
+                            "transactionHash": "0x26d4d91bb06fe98bc5f2f9f558dcef84cdf335941e974b03a3c91a9d8\
+                              6e1f718"
+                            "transactionIndex": "0x0"
+                            "blockHash": "0x58d6a86156082b3abc7c9a416684c855f5760c15088d242d665b8f0686cb132\
+                              9"
+                            "logIndex": "0x0"
+                            "removed": false
+                        "logsBloom": "0x000000000000000000000000000000000000000000000000000000004000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          80000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000010000000000000000000400000\
+                          00000000008000000000000000000000000000000000000000000\
+                          00000080000000000000000000000000000200000000000008000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000001000000004000000000000000\
+                          0000000000000000008400000"
+                        "nonce": "0x24ad3"
+                        "senderTxHash": "0x9549b2cc47b2ba8cbb7d98ca24cf921bc703c4b9e9c0966530e5bd51b6e5\
+                          2bd9"
+                        "signatures":
+                          - "V": "0x4056"
+                            "R": "0x7e4349651f9c9b773df70ec205611a6302fadc14fb7fc521b55e8eef7d757f3d"
+                            "S": "0x4570d64f1fe6cc851e03e69b03747872c1915e8a432c3e41edbd940e9f0e5741"
+                        "status": "0x1"
+                        "to": "0xf93b0d3e03422416b787e850c51f7be47ab481e5"
+                        "transactionHash": "0x26d4d91bb06fe98bc5f2f9f558dcef84cdf335941e974b03a3c91a9d8\
+                          6e1f718"
+                        "transactionIndex": "0x0"
+                        "type": "TxTypeFeeDelegatedSmartContractExecution"
+                        "typeInt": 49
+                        "value": "0x0"
+                      - "blockHash": "0x58d6a86156082b3abc7c9a416684c855f5760c15088d242d665b8f0686cb132\
+                          9"
+                        "blockNumber": "0x20f3106"
+                        "contractAddress": null
+                        "from": "0xbe02aba56bae1624e2c4f029e3a79308e2a19e98"
+                        "gas": "0xf4240"
+                        "gasPrice": "0x5d21dba00"
+                        "gasUsed": "0x380a8"
+                        "input": "0xb912b30800000000000000000000000000000000000000000000000000000000000\
+                          00060000000000000000000000000000000000000000000000000\
+                          00000000000000c00000000000000000000000000000000000000\
+                          00000000000000000000000016000000000000000000000000000\
+                          00000000000000000000000000000000000027323839303934333\
+                          43030323439373237383836343032303638363933323531343534\
+                          39353234390000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000007a4d466b77457759484b6f5a497a6a3043415\
+                          159494b6f5a497a6a30444151634451674145394f377a385a3472\
+                          324447494e7257796a4e7639576159706439473149626c4d53483\
+                          055313641396252537155504b75345874694f34615a6e57667434\
+                          7a684d586d5469386f47565764414c79752d5a4f33566b7577000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000028643634333937303266663235623766653\
+                          93037316638663564393634666333326133326432343765000000\
+                          000000000000000000000000000000000000000000"
+                        "logs": []
+                        "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          0000000000000000000000000"
+                        "nonce": "0x178f758"
+                        "senderTxHash": "0x6400df2a8c7f1901be1e3aebd19ee350329526ac3490b39f2cbc12cf9654\
+                          0848"
+                        "signatures":
+                          - "V": "0x4056"
+                            "R": "0xbc0e162799f8244fffc2792397d8d81b2ff2d1738069615f81b440822276de89"
+                            "S": "0xb5350e59a85d24d12a1a7e44017285ec37f34eadd3699c5fae58d65d0fc8667"
+                        "status": "0x1"
+                        "to": "0x42d877932366dcaff751405c3185393f2803962d"
+                        "transactionHash": "0x6400df2a8c7f1901be1e3aebd19ee350329526ac3490b39f2cbc12cf9\
+                          6540848"
+                        "transactionIndex": "0x1"
+                        "type": "TxTypeSmartContractExecution"
+                        "typeInt": 48
+                        "value": "0x0"
+                      - "blockHash": "0x58d6a86156082b3abc7c9a416684c855f5760c15088d242d665b8f0686cb132\
+                          9"
+                        "blockNumber": "0x20f3106"
+                        "contractAddress": null
+                        "from": "0xbe02aba56bae1624e2c4f029e3a79308e2a19e98"
+                        "gas": "0xf4240"
+                        "gasPrice": "0x5d21dba00"
+                        "gasUsed": "0x16f26"
+                        "input": "0xbf951c6800000000000000000000000000000000000000000000000000000000000\
+                          00020000000000000000000000000000000000000000000000000\
+                          00000000000000273231383536393534323934383333373734343\
+                          03732313432353135343532353436343531393737000000000000\
+                          00000000000000000000000000000000000000"
+                        "logs": []
+                        "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          0000000000000000000000000"
+                        "nonce": "0x178f759"
+                        "senderTxHash": "0x90bd852864a964809b102a0a02131a2d06a2b35b270fce7b7be1e1176d4b\
+                          31f3"
+                        "signatures":
+                          - "V": "0x4056"
+                            "R": "0xc5e90777f58eb9c2ce5e9d84884c423eff2e0d09e0ebf2fd3c34bd38eccfd60d"
+                            "S": "0x1654e4e2677a5a30e5638e0c062e99ec99de03e81f591f6e90cedbbc6298354"
+                        "status": "0x1"
+                        "to": "0x42d877932366dcaff751405c3185393f2803962d"
+                        "transactionHash": "0x90bd852864a964809b102a0a02131a2d06a2b35b270fce7b7be1e1176\
+                          d4b31f3"
+                        "transactionIndex": "0x2"
+                        "type": "TxTypeSmartContractExecution"
+                        "typeInt": 48
+                        "value": "0x0"
+                      - "blockHash": "0x58d6a86156082b3abc7c9a416684c855f5760c15088d242d665b8f0686cb132\
+                          9"
+                        "blockNumber": "0x20f3106"
+                        "contractAddress": null
+                        "feePayer": "0xff587ade196af0829edb1c0251d98443c09a8f3e"
+                        "feePayerSignatures":
+                          - "V": "0x4055"
+                            "R": "0x5b5f06ca74ae28eaec6fb3c6d96c405b85f39bd3b95e5b98b60a619d809a5cee"
+                            "S": "0x515765826e51c2c42cd2b90fdeb75c5797e54958c76519b389c714bb2cbd1306"
+                        "from": "0x7a86c007443d9df1771b48cd44eba2c1c74f8e43"
+                        "gas": "0x2dc6c0"
+                        "gasPrice": "0x5d21dba00"
+                        "gasUsed": "0x2d12cb"
+                        "input": "0x95e73ac400000000000000000000000000000000000000000000000000000000000\
+                          00020000000000000000000000000000000000000000000000000\
+                          00000000000000462361663132383366662d363431342d3437303\
+                          42d396239352d3936393166663766333131642365656436386534\
+                          37666339626233656164646130333836393162346331383038000\
+                          0000000000000000000000000000000000000000000000000"
+                        "logs": []
+                        "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          00000000000000000000000000000000000000000000000000000\
+                          0000000000000000000000000"
+                        "nonce": "0x180"
+                        "senderTxHash": "0x48c8fb88e8b8105462099cfb05f0581bd15b61555329257b8814016997ee\
+                          ef81"
+                        "signatures":
+                          - "V": "0x4055"
+                            "R": "0x600e2d7fe73c8631b1583c5b3d754fb82db1d14184bedbac99b2f7651f35a016"
+                            "S": "0x2325d869ab2a8e6cfebe3e5c18749e66157aed37a6ec644bc85e64d106844516"
+                        "status": "0x0"
+                        "to": "0x186f16777b7e520e5181785e6086df91d0dbf6ba"
+                        "transactionHash": "0x2de4a353dec8688e262a2d427ee50b47e74dcdeae8ed90851fb3e085b\
+                          a2c4b15"
+                        "transactionIndex": "0x3"
+                        "txError": "0x9"
+                        "type": "TxTypeFeeDelegatedSmartContractExecution"
+                        "typeInt": 49
+                        "value": "0x0"
+                "klay_getBlockByNumber":
+                  "summary": "klay_getBlockByNumber"
+                  "description": ""
+                  "value":
+                    "jsonrpc": "2.0"
+                    "id": 1
+                    "result":
+                      "blockscore": "0x1"
+                      "extraData": "0x000000000000000000000000000000000000000000000000000000000000000\
+                        0f901d6f9018f9456e3a565e31f8fb0ba0b12c03355518c64372120\
+                        94386ca3cb8bb13f48d1a6adc1fb8df09e7bb7f9c894f8c9c61c5e7\
+                        f2b6219d1c28b94e5cb3cdc80259494bca8ffa45cc8e30bbc0522cd\
+                        f1a1e0ebf540dfe294f113ec8c22765d485309cf1d025d1b975245b\
+                        9f8940b59cae1f03534209fdb9ddf5ea65b310cd7060c94ec6c1ced\
+                        e510be308f0fdbbc8dbdf238829bdb349445ed4bf508ca2061a8b4a\
+                        16e278ea85a8f87a70b94a2ba8f7798649a778a1fd66d3035904949\
+                        fec55594e3d92072d8b9a59a0427485a1b5f459271df457c9417828\
+                        34bf8847e235f21f2c1f13fca4d5dff662194e783fc94fddaeebef7\
+                        293d6c5864cff280f121e19456e8c1463c341abf8b168c3079ea41c\
+                        e8a387e1894e93a890fb7ec5e993b1a7fd77b0d13a0763eff3d9416\
+                        c192585a0ab24b552783b4bf7d8dc9f6855c3594ed6ee8a1877f958\
+                        2858dbe2509abb0ac33e5f24e942bdd279522b8a0843831fbb94cfb\
+                        b24a913597c594f6623192aa096e192024ecb381b04c58df9a60759\
+                        452d41ca72af615a1ac3301b0a93efa222ecc7541b8410000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000c0"
+                      "gasUsed": "0x0"
+                      "governanceData": "0xb901c17b22676f7665726e616e63652e676f7665726e616e63656d6f64\
+                        65223a2273696e676c65222c22676f7665726e616e63652e676f766\
+                        5726e696e676e6f6465223a22307835326434316361373261663631\
+                        3561316163333330316230613933656661323232656363373534312\
+                        22c22676f7665726e616e63652e756e69747072696365223a323530\
+                        30303030303030302c22697374616e62756c2e636f6d6d697474656\
+                        573697a65223a32322c22697374616e62756c2e65706f6368223a36\
+                        30343830302c22697374616e62756c2e706f6c696379223a322c227\
+                        265776172642e64656665727265647478666565223a747275652c22\
+                        7265776172642e6d696e696d756d7374616b65223a2235303030303\
+                        030222c227265776172642e6d696e74696e67616d6f756e74223a22\
+                        39363030303030303030303030303030303030222c2272657761726\
+                        42e70726f706f736572757064617465696e74657276616c223a3336\
+                        30302c227265776172642e726174696f223a2233342f35342f31322\
+                        22c227265776172642e7374616b696e67757064617465696e746572\
+                        76616c223a38363430302c227265776172642e75736567696e69636\
+                        f656666223a747275657d"
+                      "hash": "0xc72e5293c3c3ba38ed8ae910f780e4caaa9fb95e79784f7ab74c3c262ea7137e"
+                      "logsBloom": "0x000000000000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        0000000000000000000000000000000000000000000000000000000\
+                        000000000"
+                      "number": "0x0"
+                      "parentHash": "0x00000000000000000000000000000000000000000000000000000000000000\
+                        00"
+                      "receiptsRoot": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85\
+                        a470"
+                      "reward": "0x0000000000000000000000000000000000000000"
+                      "size": "0x570"
+                      "stateRoot": "0x23a9977c16397aa93fc8caf303abdf054e92adb2b99c5f35b89af6566d1a8cd\
+                        0"
+                      "timestamp": "0x5d10c5d1"
+                      "timestampFoS": "0x0"
+                      "totalBlockScore": "0x1"
+                      "transactions": []
+                      "transactionsRoot": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad804\
+                        5d85a470"
+                      "voteData": "0x"
+        "400":
+          "description": "Bad request"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "properties":
+                  "code":
+                    "type": "integer"
+                    "description": "Error code"
+                  "message":
+                    "type": "string"
+                    "description": "Error message"
+                "required":
+                  - "code"
+                  - "message"
+              "examples":
+                "Bad request":
+                  "summary": "Bad request"
+                  "value":
+                    "code": 1034000
+                    "message": "Bad request"
+      "summary": "JSON RPC 호출"
+      "operationId": "JSONRPC호출"
+      "tags":
+        - "Node"
+      "requestBody":
+        "$ref": "#/components/requestBodies/JsonRpcRequest"
+  "/v1/metadata/ft/{address}":
+    "get":
+      "description": "FT 컨트랙트 정보를 조회합니다. 조회대상 컨트랙트는 반드시 ERC-20 또는 KIP-7 표준을 지켜야 하며,
+        올바른 정보 반환을 위해 `name()`, `symbol()`, `decimals()` 함수들을 반드시
+        구현해야합니다.<p></p>
+
+
+        요청받은 컨트랙트가
+
+        * 존재하지 않을 경우 컨트랙트 주소를 제외한 결과물의 모든 필드는 빈 문자열 또는 0/-1로 채워집니다.<br>
+
+        * ERC-20/KIP-7 표준을 따르지 않을 경우 결과물은 컨트랙트에 따라 다르게 나옵니다.<br>
+
+        * 필수 함수들을 구현하지 않을 경우 해당 함수가 채워주는 결과물의 필드들은 빈 문자열 또는 0/-1로
+        채워집니다.<p></p><br>
+
+
+        ### 주의
+
+        FT 컨트랙트 조회 API는 요청된 주소에 배포된 컨트랙트가 올바른 ERC-20/KIP-7인지 검증하지 않으며,
+        요청된 주소에 저장된 컨트랙트에 `name()`, `symbol()`, `decimals()` 함수를 호출하여 그 결과를 응답으로
+        돌려줍니다. 이 때문에 FT 컨트랙트 조회 API에 NFT 컨트랙트 주소를 입력할 경우 NFT의 name, symbol 등이
+        반환될 수 있습니다."
+      "parameters":
+        - "description": " Chain ID (one of 8217 or 1001)"
+          "in": "header"
+          "name": "x-chain-id"
+          "required": true
+          "schema":
+            "type": "string"
+        - "description": "FT 컨트랙트 주소"
+          "in": "path"
+          "name": "address"
+          "required": true
+          "schema":
+            "type": "string"
+      "responses":
+        "200":
+          "description": "Success"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/FtContractMeta"
+              "examples":
+                "example1":
+                  "summary": "example1"
+                  "description": ""
+                  "value":
+                    "address": "0x3b3b30a76d169f72a0a38ae01b0d6e0fbee3cc2e"
+                    "decimals": 18
+                    "name": "TEMCO"
+                    "symbol": "TEMCO"
+                    "totalSupply": "0x1363156bbee3016d70000000"
+      "summary": "FT 컨트랙트 조회"
+      "operationId": "FT컨트랙트조회"
+      "tags":
+        - "Node"
+  "/v1/metadata/nft/{address}":
+    "get":
+      "description": "NFT 컨트랙트 정보를 조회합니다. 조회대상 컨트랙트는 반드시 ERC-721 또는 KIP-17 표준을 지켜야 하며,
+        올바른 정보 반환을 위해 `name()`, `symbol()`, `totalSupply()` 함수들을 반드시
+        구현해야합니다.<p></p>
+
+
+        요청받은 컨트랙트가
+
+        * 존재하지 않을 경우 컨트랙트 주소를 제외한 결과물의 모든 필드는 빈 문자열 또는 0/-1로 채워집니다.<br>
+
+        * ERC-721/KIP-17 표준을 따르지 않을 경우 결과물은 컨트랙트에 따라 다르게 나옵니다.<br>
+
+        * 필수 함수들을 구현하지 않을 경우 해당 함수가 채워주는 결과물의 필드들은 빈 문자열 또는 0/-1로
+        채워집니다.<p></p><br>
+
+
+        ### 주의
+
+        NFT 컨트랙트 조회 API는 요청된 주소에 배포된 컨트랙트가 올바른 ERC-721/KIP-17인지 검증하지
+        않으며, 요청된 주소에 저장된 컨트랙트에 `name()`, `symbol()`, `totalSupply()` 함수를 호출하여 그
+        결과를 응답으로 돌려줍니다. 이 때문에 NFT 컨트랙트 조회 API에 FT 컨트랙트 주소를 입력할 경우 FT의 name,
+        symbol 등이 반환될 수 있습니다."
+      "parameters":
+        - "description": " Chain ID (one of 8217 or 1001)"
+          "in": "header"
+          "name": "x-chain-id"
+          "required": true
+          "schema":
+            "type": "string"
+        - "description": "NFT 컨트랙트 주소"
+          "in": "path"
+          "name": "address"
+          "required": true
+          "schema":
+            "type": "string"
+      "responses":
+        "200":
+          "description": "Success"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/NftContractMeta"
+              "examples":
+                "example1":
+                  "summary": "example1"
+                  "description": ""
+                  "value":
+                    "address": "0x369611bc873b38175b91d6cc8c4018bdd3068b86"
+                    "name": "Konnect NFT Certification"
+                    "symbol": "KNC"
+                    "totalSupply": "0x86"
+      "summary": "NFT 컨트랙트 조회"
+      "operationId": "NFT컨트랙트조회"
+      "tags":
+        - "Node"
+  "/v1/metadata/nft/{address}/{id}":
+    "get":
+      "description": "NFT(Non-Fungible Token)를 조회합니다. 조회대상 컨트랙트는 반드시 ERC-721 또는 KIP-17
+        표준을 지켜야 하며, 올바른 정보 반환을 위해 `tokenUri()` 함수를 반드시 구현해야합니다.\n"
+      "parameters":
+        - "description": " Chain ID (one of 8217 or 1001)"
+          "in": "header"
+          "name": "x-chain-id"
+          "required": true
+          "schema":
+            "type": "string"
+        - "description": "NFT 컨트랙트 주소 "
+          "in": "path"
+          "name": "address"
+          "required": true
+          "schema":
+            "type": "string"
+        - "description": "조회할 NFT ID"
+          "in": "path"
+          "name": "id"
+          "required": true
+          "schema":
+            "type": "string"
+      "responses":
+        "200":
+          "description": "Success"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/Nft"
+              "examples":
+                "Get a sample NFT":
+                  "summary": "Get a sample NFT"
+                  "description": ""
+                  "value":
+                    "uri": "https://media.klipwallet.com/card_asset/165616/cced4c1b-6407-45a4-b6d9-\
+                      ec040870df5e.json"
+                    "owner": "0x3cb01b8f935069b3f3d57cff07be4e4c09164f79"
+      "summary": "NFT 조회"
+      "operationId": "NFT조회"
+      "tags":
+        - "Node"
+"tags": []
+"servers":
+  - "url": "https://node-api.klaytnapi.com"
+"components":
+  "schemas":
+    "FtContractMeta":
+      "title": "FtContractMeta"
+      "type": "object"
+      "properties":
+        "address":
+          "type": "string"
+          "description": "컨트랙트 주소"
+          "example": "0x46f307b58bf05ff089ba23799fae0e518557f87c"
+        "decimals":
+          "type": "integer"
+          "format": "int32"
+          "description": "토큰 자릿수"
+          "example": 8
+        "name":
+          "type": "string"
+          "description": "토큰 이름"
+          "example": "Test Token"
+        "symbol":
+          "type": "string"
+          "description": "토큰 심볼"
+          "example": "TT"
+        "totalSupply":
+          "type": "string"
+          "description": "토큰 총 발행량 (16진수)"
+          "example": "0x123"
+      "required":
+        - "address"
+        - "decimals"
+        - "name"
+        - "symbol"
+        - "totalSupply"
+    "JsonRpcRequest":
+      "title": "JsonRpcRequest"
+      "type": "object"
+      "properties":
+        "id":
+          "type": "integer"
+          "format": "int64"
+          "description": "RPC 요청 ID"
+          "example": 1
+        "jsonrpc":
+          "type": "string"
+          "description": "JSON RPC 버전"
+          "example": "2.0"
+        "method":
+          "type": "string"
+          "description": "실행할 RPC 메소드"
+          "example": "klay_blockNumber"
+        "params":
+          "type": "array"
+          "description": "RPC 메소드를 실행할 때 필요한 파라미터 배열"
+          "items":
+            "type": "object"
+            "additionalProperties": {}
+          "example": []
+      "required":
+        - "id"
+        - "method"
+    "JsonRpcResponse":
+      "title": "JsonRpcResponse"
+      "type": "object"
+      "properties":
+        "id":
+          "type": "integer"
+          "format": "int64"
+          "description": "응답에 대응하는 RPC 요청 ID"
+        "result":
+          "type": "object"
+          "description": "RPC 결과"
+        "jsonrpc":
+          "type": "string"
+          "description": "JSON RPC 버전"
+      "required":
+        - "id"
+        - "result"
+        - "jsonrpc"
+    "Nft":
+      "title": "Nft"
+      "type": "object"
+      "properties":
+        "uri":
+          "type": "string"
+          "description": "NFT를 수식하는 정보가 위치한 리소스의 URI"
+          "example": "https://mynft.com/asset/0x123"
+        "owner":
+          "type": "string"
+          "description": "NFT 소유자"
+          "example": "0x462e90a68328662163189c3b35fafeea3f6b29e8"
+      "required":
+        - "uri"
+        - "owner"
+    "NftContractMeta":
+      "title": "NftContractMeta"
+      "type": "object"
+      "properties":
+        "address":
+          "type": "string"
+          "description": "NFT 컨트랙트 주소"
+          "example": "0x369611bc873b38175b91d6cc8c4018bdd3068b86"
+        "name":
+          "type": "string"
+          "description": "토큰 이름"
+          "example": "Test NFT"
+        "symbol":
+          "type": "string"
+          "description": "토큰 심볼"
+          "example": "TNFT"
+        "totalSupply":
+          "type": "string"
+          "description": "발행된 토큰 개수"
+          "example": "0x86"
+      "required":
+        - "address"
+        - "name"
+        - "symbol"
+        - "totalSupply"
+  "securitySchemes":
+    "Basic":
+      "description": "KAS는 Basic HTTP Auth를 사용합니다. 모든 요청은 반드시 올바른 Authorization 헤더를
+        가져야 하며 KAS 사용자는 access key ID를 `username`으로, secret access key를
+        `password`로 사용하여 Basic Auth에 사용할 자격증명을 생성합니다.
+
+
+        KAS 계정의 각 Credential은 모든 KAS 서비스를 사용할 수 있으며, Wallet API로 만든
+        Klaytn 계정에 대한 모든 권한을 소유하기 때문에, 생성한 Klaytn 계정의 자산(KLAY 등) 이동이나 [트랜잭션
+        실행](https://docs.klaytnapi.com/tutorial/wallet-transaction-api) 권한을
+        가집니다. KAS/Klaytn 계정 보안을 위해 KAS API 인증 키(Secret Access Key)를 타인과 함부로 공유하지
+        말고 주의해 관리하십시오.
+
+
+        ### cURL
+
+        ```
+
+        \  curl --location --request POST 'https://node-api.klaytnapi.com/v1/klaytn' \\
+
+        \  -u {{your_accessKeyId}}:{{your_secretAccessKey}} \\
+
+        \  --header 'x-chain-id: 8217' \\
+
+        \  --header 'Content-Type: application/json' \\
+
+        \  --data-raw
+        '{\"jsonrpc\":\"2.0\",\"method\":\"klay_blockNumber\",\"params\":[],\"id\
+        \":1}'
+
+        ```
+
+        ### caver-js
+
+        ```
+
+        \  const accessKeyId = \"{{your_accessKeyId}}\";
+
+        \  const secretAccessKey = \"{{your_secretAccessKey}}\";
+
+
+        \  const option = {
+
+        \    headers: [
+
+        \      {name: 'Authorization', value: 'Basic ' +
+        Buffer.from(accessKeyId + ':' + secretAccessKey).toString('base64')},
+
+        \      {name: 'x-chain-id', value: '8217'},
+
+        \    ]
+
+        \  }
+
+
+        \  const caver = new Caver(new
+        Caver.providers.HttpProvider(\"https://node-api.klaytnapi.com/v1/klaytn\", option))
+
+        ```
+
+        ### caver-java
+
+        ```
+
+        \  HttpService httpService = new
+        HttpService(\"https://node-api.klaytnapi.com/v1/klaytn\");
+
+        \  String auth = Credentials.basic(\"{{your_accessKeyId}}\",
+        \"{{your_secretAccessKey}}\", StandardCharsets.UTF_8);
+
+        \  httpService.addHeader(\"Authorization\", auth);
+
+        \  httpService.addHeader(\"x-chain-id\", \"8217\")
+
+        \  Caver caver = Caver.build(httpService);
+
+        ```
+
+        \n"
+      "type": "http"
+      "scheme": "basic"
+  "requestBodies":
+    "JsonRpcRequest":
+      "description": "JSON RPC 요청"
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "#/components/schemas/JsonRpcRequest"
+"security":
+  - "Basic": []
