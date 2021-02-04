@@ -21,7 +21,7 @@ const App = () => {
             } />
           ) 
         })}
-        <Route exact key={`route-caver-js`} path='/en/sdk/js/latest' render={(props)=>{
+        <Route exact key={`route-caver-js`} path='/en/sdk/js/:version' render={(props)=>{
           return (<CaverJsPage {...props} />)}
         } />
         <Redirect from='/ko/sdk/js/latest' to='/en/sdk/js/latest' exact />

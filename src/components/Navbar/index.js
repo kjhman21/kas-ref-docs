@@ -1,6 +1,7 @@
 import { Button, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import docs from '../../docs.json'
 import javaVersions from '../../java.json';
+import jsVersions from '../../js.json';
 
 const KasDocsNavBar = (props) => {
   const paths = props.location.pathname.split('/');
@@ -58,7 +59,11 @@ const KasDocsNavBar = (props) => {
             {
               (paths[2] === "sdk") ?
                 (paths[3] === "js") ?
-                <NavDropdown.Item key='latest' href={`${sitePrefix}${props.location.pathname}`}>latest</NavDropdown.Item>
+                jsVersions.versions.map(x=>{
+                  var targetPaths = JSON.parse(JSON.stringify(paths))
+                  targetPaths[targetPaths.length-1] = x;
+                  return <NavDropdown.Item key={x} href={`${sitePrefix}${targetPaths.join('/')}`}>{x}</NavDropdown.Item>
+                })
                 : javaVersions.versions.slice().reverse().map(x=>{
                   var targetPaths = JSON.parse(JSON.stringify(paths))
                   targetPaths[targetPaths.length-1] = x;

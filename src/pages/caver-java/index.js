@@ -8,7 +8,6 @@ const CaverJavaPage = (props) => {
         version = versions.latestVersion;
     }
     const url = `https://javadoc.io/static/xyz.groundx.caver/caver-java-ext-kas/${version}/index.html`;
-    console.log(url)
     return (
         <>
             <KasDocsNavBar {...props} currentAPITitle='API References' currentSDKTitle='KAS SDK (Java)' />

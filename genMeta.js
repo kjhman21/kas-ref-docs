@@ -2,7 +2,6 @@ const fs = require('fs')
 const glob = require('glob')
 const YAML = require('yaml')
 const axios = require('axios');
-const { parse } = require('node-html-parser');
 
 async function genDocs() {
   var docs = [];
@@ -49,6 +48,29 @@ async function genDocs() {
 
     fs.writeFileSync('src/java.json', JSON.stringify(docs))
   })
+
+  const jsTagUrl = "https://api.github.com/repos/ground-x/caver-js-ext-kas/tags"
+  axios.get(jsTagUrl).then(res=>{
+    const versions = ["latest"];
+    var latestVersion = "";
+
+    for(var i = 0; i < res.data.length; i++) {
+      const x = res.data[i];
+      if(x.name == "v1.0.0") break;
+      if(latestVersion.length == 0 && x.name.indexOf("rc") < 0 ) {
+        latestVersion = x.name
+      }
+      versions.push(x.name)
+    }
+
+    var docs = {
+      versions,
+      latestVersion
+    }
+
+    fs.writeFileSync('src/js.json', JSON.stringify(docs))
+  })
+
 }
 
 genDocs()
